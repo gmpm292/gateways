@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: golden-backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: golden-backend
+  template:
+    metadata:
+      labels:
+        app: golden-backend
+    spec:
+      containers:
+        - name: golden-backend
+          image: $IMAGE_TAG
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: production
+          envFrom:
+            - secretRef:
+                name: golden-secrets
+

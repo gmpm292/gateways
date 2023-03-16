@@ -1,0 +1,54 @@
+image: docker:19.03.1
+
+services:
+  - docker:19.03.1-dind
+
+stages:
+  - build
+  - deploy
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ""
+
+build:
+  stage: build
+  tags:
+    - docker
+  only:
+    refs:
+      - main
+  before_script:
+    - echo $DO_TOKEN | docker login -u $DO_TOKEN $DO_REGISTRY_IMAGE --password-stdin
+  script:
+    - docker build --tag $IMAGE_TAG --file Dockerfile .
+    - docker push $IMAGE_TAG
+  after_script:
+    - docker image prune -a -f
+
+deploy:
+  stage: deploy
+  image: debian:11.6-slim
+  tags:
+    - docker
+  only:
+    refs:
+      - main
+  before_script:
+    - apt update && apt -y upgrade && apt-get install -y curl ca-certificates gettext-base
+    - curl -Lo doctl.tar.gz https://github.com/digitalocean/doctl/releases/download/v1.93.1/doctl-1.93.1-linux-amd64.tar.gz && tar xf doctl.tar.gz
+    - chmod u+x doctl
+    - mv doctl /usr/local/bin/doctl
+    - doctl auth init -t $DO_TOKEN
+    - curl -LO "https://dl.k8s.io/release/v1.26.2/bin/linux/amd64/kubectl"
+    - curl -LO "https://dl.k8s.io/v1.26.2/bin/linux/amd64/kubectl.sha256"
+    - echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+    - chmod +x kubectl
+    - mkdir -p ~/.local/bin
+    - mv ./kubectl ~/.local/bin/kubectl
+    - export PATH="~/.local/bin:$PATH"
+    - doctl k8s cluster kubeconfig save "${CLUSTER_NAME}"
+    - envsubst < deployment.yml > deploy.yml
+  script:
+    - kubectl apply -f deploy.yml
+
