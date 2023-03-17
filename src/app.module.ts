@@ -1,11 +1,18 @@
 import { Module } from '@nestjs/common';
 
+import { AppInfoModule } from './modules/appInfo/appInfo.module';
 import { ConfigModule } from './common/config';
+import { CoreModule } from './core/core.module';
 import { DatabaseModule } from './common/database';
 import { GraphqlModule } from './common/graphql';
-import { AppInfoModule } from './modules/appInfo/appInfo.module';
 
 @Module({
-  imports: [AppInfoModule, ConfigModule, DatabaseModule, GraphqlModule],
+  imports: [
+    AppInfoModule,
+    ConfigModule,
+    CoreModule,
+    DatabaseModule,
+    GraphqlModule,
+  ],
 })
 export class AppModule {}
