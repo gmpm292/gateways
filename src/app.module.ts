@@ -8,7 +8,7 @@ import { GraphqlModule } from './common/graphql';
 import { AppResolver } from './app.resolver';
 
 @Module({
-  imports: [ConfigModule, DatabaseModule, GraphqlModule],
+  imports: [ConfigModule, GraphqlModule],
   controllers: [AppController],
   providers: [AppService, AppResolver],
 })
