@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+  postgres:
+    image: "postgres:15.1"
+    volumes:
+      - pg-data-golden:/var/lib/postgresql/data/
+    env_file:
+      - .infra.env
+    networks:
+      - local
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: carloshm91@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: 123123asdasd
+    volumes:
+      - pgadmin-data-golden:/var/lib/pgadmin
+    depends_on:
+      - postgres
+    networks:
+      - local
+
+  redis:
+    image: redis:alpine
+    volumes:
+      - redis-data-golden:/data
+    networks:
+      - local
+
+networks:
+  local:
+    driver: bridge
+
+volumes:
+  pg-data-golden:
+  redis-data-golden:
+  pgadmin-data-golden:
