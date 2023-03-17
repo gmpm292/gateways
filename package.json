@@ -18,17 +18,34 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
+<<<<<<< HEAD
     "rsync:graphql": "rsync -r --include '*/' --include '*.graphql' --exclude='*' --prune-empty-dirs 'src/' 'dist/'"
+=======
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli -d ./migrations/config/typeOrm.config.ts",
+    "migration-create": "npm run typeorm migration:create",
+    "migration-generate": "npm run typeorm migration:generate",
+    "migrations-run": "npm run typeorm migration:run",
+    "migration-revert": "npm run typeorm migration:revert"
+>>>>>>> 2e027b90ff950c3d2d671a9ec88cd9e4d26fea11
   },
   "dependencies": {
+    "@apollo/server": "^4.5.0",
+    "@nestjs/apollo": "^11.0.3",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.3.1",
     "@nestjs/core": "^9.0.0",
+    "@nestjs/graphql": "^11.0.0",
     "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/typeorm": "^9.0.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
+    "graphql": "^16.6.0",
+    "graphql-subscriptions": "^2.0.0",
+    "graphql-ws": "^5.12.0",
+    "pg": "^8.10.0",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "typeorm": "^0.3.12"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
