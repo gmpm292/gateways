@@ -16,23 +16,23 @@ export class EnvironmentVariables {
 
   // SECURITY
   // The time must be specified in milliseconds
-  @IsNotEmpty()
-  public ACCESS_TOKEN_EXPIRE_IN: string;
-  @IsNotEmpty()
-  public ACCESS_TOKEN_SECRET: string;
+  //@IsNotEmpty()
+  //public ACCESS_TOKEN_EXPIRE_IN: string;
+  //@IsNotEmpty()
+  //public ACCESS_TOKEN_SECRET: string;
   // The time must be specified in milliseconds
-  @IsNotEmpty()
-  public CONFIRMATION_TOKEN_EXPIRE_IN: string;
-  @IsNotEmpty()
-  public CONFIRMATION_TOKEN_SECRET: string;
+  //@IsNotEmpty()
+  //public CONFIRMATION_TOKEN_EXPIRE_IN: string;
+  //@IsNotEmpty()
+  //public CONFIRMATION_TOKEN_SECRET: string;
   // Origins allowed to query the API. To insert multiple values separate by comma (,)
   @IsNotEmpty()
   public CORS_ORIGIN: string;
   // The time must be specified in milliseconds
-  @IsNotEmpty()
-  public REFRESH_TOKEN_EXPIRE_IN: string;
-  @IsNotEmpty()
-  public REFRESH_TOKEN_SECRET: string;
+  //@IsNotEmpty()
+  //public REFRESH_TOKEN_EXPIRE_IN: string;
+  //@IsNotEmpty()
+  //public REFRESH_TOKEN_SECRET: string;
 
   // SYSTEM
   //possible environments: 'development', 'production','test'
