@@ -40,4 +40,6 @@ export class EnvironmentVariables {
   public NODE_ENV: Environment;
   @IsNotEmpty()
   public PORT: number;
+
+  public NODE_OPTIONS:string;
 }
