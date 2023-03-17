@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { ConfigModule, ConfigService } from '../config';
+import { isRemote } from './helpers/isDBRemote.helper';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { ConfigModule, ConfigService } from '../config';
         username: configService.get('TYPEORM_USERNAME'),
         password: configService.get('TYPEORM_PASSWORD'),
         database: configService.get('TYPEORM_DATABASE'),
+        ssl: isRemote() ? { ca: configService.get('SSL_CERT') } : false,
 
         entities: ['**/*.entity{.ts,.js}'],
         migrationsTableName: 'migrations',

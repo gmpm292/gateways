@@ -13,26 +13,29 @@ export class EnvironmentVariables {
   public TYPEORM_PASSWORD: string;
   @IsNotEmpty()
   public TYPEORM_DATABASE: string;
+  @IsNotEmpty()
+  public SSL_CERT: string;
 
   // SECURITY
   // The time must be specified in milliseconds
-  //@IsNotEmpty()
-  //public ACCESS_TOKEN_EXPIRE_IN: string;
-  //@IsNotEmpty()
-  //public ACCESS_TOKEN_SECRET: string;
+  @IsNotEmpty()
+  public ACCESS_TOKEN_EXPIRE_IN: string;
+  @IsNotEmpty()
+  public ACCESS_TOKEN_SECRET: string;
   // The time must be specified in milliseconds
-  //@IsNotEmpty()
-  //public CONFIRMATION_TOKEN_EXPIRE_IN: string;
-  //@IsNotEmpty()
-  //public CONFIRMATION_TOKEN_SECRET: string;
+  @IsNotEmpty()
+  public CONFIRMATION_TOKEN_EXPIRE_IN: string;
+  @IsNotEmpty()
+  public CONFIRMATION_TOKEN_SECRET: string;
   // Origins allowed to query the API. To insert multiple values separate by comma (,)
+  // to allow any origin set (*)
   @IsNotEmpty()
   public CORS_ORIGIN: string;
   // The time must be specified in milliseconds
-  //@IsNotEmpty()
-  //public REFRESH_TOKEN_EXPIRE_IN: string;
-  //@IsNotEmpty()
-  //public REFRESH_TOKEN_SECRET: string;
+  @IsNotEmpty()
+  public REFRESH_TOKEN_EXPIRE_IN: string;
+  @IsNotEmpty()
+  public REFRESH_TOKEN_SECRET: string;
 
   // SYSTEM
   //possible environments: 'development', 'production','test'
@@ -40,6 +43,4 @@ export class EnvironmentVariables {
   public NODE_ENV: Environment;
   @IsNotEmpty()
   public PORT: number;
-
-  public NODE_OPTIONS:string;
 }

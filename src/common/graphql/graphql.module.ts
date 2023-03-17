@@ -17,6 +17,7 @@ import { PubSubProvider } from './pub-sub.provider';
       driver: ApolloDriver,
       imports: [ConfigModule],
       useFactory: async () => ({
+        playground: true,
         cors: {
           credentials: true,
           origin: parseOriginFromEnvironment(),
