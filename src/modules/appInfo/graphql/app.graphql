@@ -1,0 +1,9 @@
+type AppInfo {
+  name: String
+  version: String
+  description: String
+}
+
+type Query {
+  appInfo: AppInfo
+}
