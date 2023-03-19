@@ -18,6 +18,7 @@ import { PubSubProvider } from './pub-sub.provider';
       imports: [ConfigModule],
       useFactory: async () => ({
         playground: true,
+        introspection: true,
         cors: {
           credentials: true,
           origin: parseOriginFromEnvironment(),
