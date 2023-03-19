@@ -11,7 +11,7 @@ import { GraphqlModule } from './common/graphql';
     AppInfoModule,
     ConfigModule,
     CoreModule,
-    DatabaseModule,
+    //DatabaseModule,
     GraphqlModule,
   ],
 })
